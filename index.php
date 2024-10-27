@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Portfolio</title>
+  <link rel="shortcut icon" type="image/icon" href="img/web-programming.png"/>
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+</head>
+
+<body>
+  <!-- Header -->
+  <section id="header">
+    <div class="header container">
+      <div class="nav-bar">
+        <div class="brand">
+          <a href="#hero">
+            <h1><span>B</span>elkhatir <span>K</span>arima</h1>
+          </a>
+        </div>
+        <div class="nav-list">
+          <div class="hamburger">
+            <div class="bar"></div>
+          </div>
+          <ul>
+            <li><a href="#hero" data-after="Home">Home</a></li>
+            <li><a href="#services" data-after="Service">Services</a></li>
+            <li><a href="#Technologies" data-after="Technologies">Technologies</a></li>
+            <li><a href="#projects" data-after="Projects">Projects</a></li>
+            <li><a href="#about" data-after="About">About</a></li>
+            <li><a href="#contact" data-after="Contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Header -->
+
+
+  <!-- Hero Section  -->
+  <section id="hero">
+    <div class="hero container">
+      <div>
+        <h1>Hello, <span></span></h1>
+        <h1>My Name is <span></span></h1>
+        <h1>Karima <span></span></h1>
+        <a href="#projects" type="button" class="cta">Portfolio</a>
+      </div>
+    </div>
+  </div>
+  </section>
+  <!-- End Hero Section  -->
+
+  <!-- Service Section -->
+  <section id="services">
+    <div class="services container">
+      <div class="service-top">
+        <h1 class="section-title">Serv<span>i</span>ces</h1>
+        <p>I'm a Full-stack Developer based in Casablanca, Morocco 
+          specializing in building and designing exceptional, high-quality websites and applications. 
+        </p>
+      </div>
+      <div class="service-bottom">
+        <div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/services.png" /></div>
+          <h2>back-end development</h2>
+          <p>I provide custom back-end development for various web apps. 
+            Whatever your requirements, I will provide you with a customized solution that will 
+            help you achieve your goals.</p>
+        </div> 
+        <div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/services.png" /></div>
+          <h2>frontend development</h2>
+          <p>I build innovative, responsive, and user-centric solutions. <br> I designe interfaces with close 
+            attention to detail and look great on both desktop screens and mobile devices. <br>
+          </p>
+        </div> 
+        <div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/services.png" /></div>
+          <h2>Data  Analyst</h2>
+          <p><br>I can gather, cleans, sort, and analyze data sets to help solve problems using variety of 
+            tools like Microsoft Excel, R or Python. <br>
+          <br>
+          </p>
+        </div> 
+      </div>
+    </div>
+  </section>
+  <!-- End Service Section -->
+
+   <!-- Technologies Section -->
+   <section id="Technologies">
+    <div class="contact container">
+      <div>
+        <h1 class="section-title">Technologies <span>stack</span></h1>
+      </div>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="icon"><img src="img/java.png" /></div>
+          <div class="contact-info">
+            <h1>JAVA</h1>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon"><img src="img/php.png" /></div>
+          <div class="contact-info">
+            <h1>PHP</h1>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon"><img src="img/angular.png" /></div>
+          <div class="contact-info">
+            <h1>Angular</h1>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon"><img src="img/python.png" /></div>
+          <div class="contact-info">
+            <h1>Python</h1>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon"><img src="img/c.png" /></div>
+          <div class="contact-info">
+            <h1>C#</h1>
+          </div>
+        </div>
+      </div>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="icon"><img src="img/dotnet.png" /></div>
+          <div class="contact-info">
+            <h1>.NET</h1>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon"><img src="img/spring.png" /></div>
+          <div class="contact-info">
+            <h1>Spring</h1>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon"><img src="img/hibernate.png" /></div>
+          <div class="contact-info">
+            <h1>Hibernate</h1>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon"><img src="img/html-5.png" /></div>
+          <div class="contact-info">
+            <h1>HTML</h1>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon"><img src="img/js.png" /></div>
+          <div class="contact-info">
+            <h1>JS</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Contact Section -->
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="projects container">
+      <div class="projects-header">
+        <h1 class="section-title">Recent <span>Projects</span></h1>
+      </div>
+      <div class="all-projects">
+        <!-- <div class="project-item">
+          <div class="project-info">
+            <h1>Project 1</h1>
+            <h2>Coding is Love</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad, iusto cupiditate voluptatum impedit unde
+              rem ipsa distinctio illum quae mollitia ut, accusantium eius odio ducimus illo neque atque libero non sunt
+              harum? Ipsum repellat animi, fugit architecto voluptatum odit et!</p>
+          </div>
+          <div class="project-img">
+            <img src="./img/img-1.png" alt="img">
+          </div>
+        </div> -->
+        <div class="project-item">
+          <div class="project-info">
+            <h1>Project 1</h1>
+            <h2>web application</h2>
+            <br>
+            <p>Anailis os an Ecommerce website with a nice looking, easy to use, and with the ability to add 
+              themes and manage products and sales. <br>
+              Technical environment :  Angular, JavaEE, Spring (Boot, MVC, Security, Data JPA), Maven, MySQL, HTML5, CSS3, Bootstrap, JavaScript.</p>
+            </p>
+          </div>
+          <div class="project-img">
+            <img src="img/anailis.png" alt="img">
+          </div>
+        </div>
+        <div class="project-item">
+          <div class="project-info">
+            <h1>Project 2</h1>
+            <h2>web application</h2>
+            <br>
+            <p>freelancer is a convenient freelance services platform<br>
+              Technical environment :  JavaEE, Spring (Boot, MVC, Security, Data JPA), Maven, MySQL, HTML5, CSS3, Bootstrap, JavaScript.</p>
+          </div>
+          <div class="project-img">
+            <img src="img/freelancer.png" alt="img">
+          </div>
+        </div>
+        <div class="project-item">
+          <div class="project-info">
+            <h1>Project 3</h1>
+            <h2>web application</h2>
+            <br>
+            <p>Hotel-Du-Maroc is a hotel reservation web app through which guests can create secure online reservations. <br>
+              Technical environment :  PHP, HTML5, CSS3, Bootstrap, MySQL.</p>
+          </div>
+          <div class="project-img">
+            <img src="img/hoteldumaroc.png" alt="img">
+          </div>
+        </div>
+        <div class="project-item">
+          <div class="project-info">
+            <h1>Project 4</h1>
+            <h2>Application desktop</h2>
+            <br>
+            <p>The platform is meant to help organizers handle several aspects of scientific conference management, 
+              such as share events and manage ticketing and more.<br>
+              Technical environment :  JAVA, JavaFX, JAVA Swing , MySQL</p>
+          </div>
+          <div class="project-img">
+            <img src="img/confmag.png" alt="img">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Projects Section -->
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="about container">
+      <div class="col-left">
+        <div class="about-img">
+          <!-- <img src="./img/img-2.png" alt="img"> -->
+          <img src="./img/karima.png" alt="img">
+        </div>
+      </div>
+      <div class="col-right">
+        <h1 class="section-title">About <span>me</span></h1>
+        <h2>Front End Developer</h2>
+        <p>I'm a Full-stack Developer based in Casablanca, Morocco 
+          specializing in building and designing exceptional, high-quality websites and applications. <br>
+          Currently studying at FST Mohammedia.  <br>
+          I'm currently looking for new opportunities.
+        </p>
+        <a href="karima_belkhatir_PFE.pdf" download class="cta">Download Resume</a> 
+      </div>
+    </div>
+  </section>
+  <!-- End About Section -->
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="contact container">
+      <div>
+        <h1 class="section-title">Contact <span>info</span></h1>
+      </div>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/phone.png" /></div>
+          <div class="contact-info">
+            <h1>Phone</h1>
+            <h2 onclick="copy(this)">+212 6 11 83 02 84</h2>
+            <!-- <h2>+212 6 11 83 02 84</h2> -->
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/new-post.png" /></div>
+          <div class="contact-info">
+            <h1>Email</h1>
+            <h2 onclick="copy(this)">karima.belkhatir96@gmail.com</h2>
+            <!-- <h2>karo19961996@gmail.com</h2> -->
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/map-marker.png" /></div>
+          <div class="contact-info">
+            <h1>Address</h1>
+            <!-- <h2>Agadir, Maroc</h2> -->
+            <h2>mohammedia, Maroc</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Contact Section -->
+
+ 
+
+  <!-- Footer -->
+  <section id="footer">
+    <div class="footer container">
+      <div class="brand">
+        <h1><span>B</span>elkhatir <span>K</span>arima</h1>
+      </div>
+      <h2></h2>
+      <!-- <h2>Your Complete Web Solution</h2> -->
+      <div class="social-icon">
+        <div class="social-item">
+          <a href="https://ma.linkedin.com/in/karima-belkhatir"><img src="https://img.icons8.com/bubbles/100/000000/facebook-new.png" /></a>
+        </div>
+        <div class="social-item">
+          <a href="https://ma.linkedin.com/in/karima-belkhatir"><img src="https://img.icons8.com/bubbles/100/000000/instagram-new.png" /></a>
+        </div>
+        <div class="social-item">
+          <a href="https://ma.linkedin.com/in/karima-belkhatir"><img src="https://img.icons8.com/bubbles/100/000000/twitter.png" /></a>
+        </div>
+        <div class="social-item">
+          <a href="https://ma.linkedin.com/in/karima-belkhatir"><img src="https://img.icons8.com/bubbles/100/000000/linkedin.png" /></a>
+        </div>
+      </div>
+      <!-- <p>Copyright © 2021 Karima. All rights reserved</p> -->
+    </div>
+  </section>
+  <!-- End Footer -->
+  <script src="./app.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-03PHL9D37Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-03PHL9D37Q');
+</script>
+</body>
+
+</html>
