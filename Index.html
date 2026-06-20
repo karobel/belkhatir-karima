@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karima Belkhatir — .NET Developer & CRM Consultant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --crimson: #C5203A;
+      --crimson-dark: #9B1A2E;
+      --dark: #0F0F0F;
+      --dark-2: #1A1A1A;
+      --dark-3: #252525;
+      --text-primary: #F0EDE8;
+      --text-secondary: #A09A90;
+      --text-muted: #6B6560;
+      --border: rgba(255,255,255,0.08);
+      --border-accent: rgba(197,32,58,0.4);
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--dark);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ── Language Toggle ── */
+    .lang-toggle {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      z-index: 2000;
+      display: flex;
+      gap: 4px;
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px;
+    }
+    .lang-btn {
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      font-family: 'Inter', sans-serif;
+    }
+    .lang-btn.active {
+      background: var(--crimson);
+      color: white;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 0 40px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(15,15,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .nav-brand span { color: var(--crimson); }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--crimson);
+      transition: width 0.25s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a:hover::after { width: 100%; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text-primary); transition: all 0.3s; }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0;
+      width: 100%;
+      background: var(--dark-2);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 40px;
+      z-index: 999;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+    .mobile-menu a { font-size: 0.9rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 40px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -300px;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(197,32,58,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      margin-bottom: 16px;
+    }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .hero-name .first { display: block; color: var(--text-primary); }
+    .hero-name .last { display: block; color: var(--crimson); }
+    .hero-title {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+      letter-spacing: 0.02em;
+    }
+    .hero-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: var(--crimson);
+      color: white;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--crimson-dark); transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: transparent;
+      color: var(--text-primary);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .btn-secondary:hover { border-color: var(--crimson); transform: translateY(-1px); }
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-card {
+      background: var(--dark-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      max-width: 340px;
+      width: 100%;
+    }
+    .hero-card-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .avatar {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--crimson), #8B1A2E);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+    .hero-card-name { font-size: 1rem; font-weight: 600; }
+    .hero-card-role { font-size: 0.78rem; color: var(--text-secondary); margin-top: 2px; }
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .stat-item {
+      background: var(--dark-3);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .stat-num {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--crimson);
+      font-family: 'Playfair Display', serif;
+    }
+    .stat-label { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+    .badge {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      border-radius: 3px;
+      background: rgba(197,32,58,0.12);
+      color: #E87070;
+      border: 1px solid rgba(197,32,58,0.25);
+    }
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+    /* ── Sections general ── */
+    section { padding: 100px 40px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .section-sub {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      line-height: 1.8;
+    }
+    .section-header { margin-bottom: 56px; }
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ── Services ── */
+    #services { background: var(--dark-2); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .service-card {
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 32px;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+    .service-card:hover { border-color: var(--border-accent); transform: translateY(-3px); }
+    .service-icon {
+      width: 48px; height: 48px;
+      background: rgba(197,32,58,0.1);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      color: var(--crimson);
+      margin-bottom: 20px;
+    }
+    .service-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 10px; }
+    .service-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.75; }
+
+    /* ── Skills / Tech ── */
+    #skills { background: var(--dark); }
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .skills-text h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 14px; }
+    .skills-text p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.8; }
+    .tech-group { margin-bottom: 28px; }
+    .tech-group-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .tech-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tech-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      background: var(--dark-2);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .tech-pill:hover { border-color: var(--crimson); color: var(--text-primary); }
+
+    /* ── Impact ── */
+    #impact { background: var(--dark); }
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+    .impact-card {
+      background: var(--dark-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 26px;
+      transition: border-color 0.25s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .impact-card:hover { border-color: var(--border-accent); transform: translateY(-3px); }
+    .impact-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--impact-color, var(--crimson));
+    }
+    .impact-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--impact-color, var(--crimson));
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .impact-label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    .impact-icon {
+      position: absolute;
+      top: 22px; right: 22px;
+      font-size: 1.3rem;
+      color: var(--impact-color, var(--crimson));
+      opacity: 0.35;
+    }
+    .impact-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      max-width: 640px;
+      line-height: 1.8;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+
+    /* ── Experience ── */
+    #experience { background: var(--dark-2); }
+    .exp-stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 14px 0 18px;
+    }
+    .exp-stat-chip {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 6px 12px;
+      font-size: 0.78rem;
+    }
+    .exp-stat-chip b {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--crimson);
+      font-weight: 700;
+    }
+    .exp-stat-chip span { color: var(--text-secondary); }
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px;
+      width: 1px;
+      bottom: 0;
+      background: var(--border);
+    }
+    .timeline-item { position: relative; margin-bottom: 44px; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -33px; top: 8px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--crimson);
+      border: 2px solid var(--dark-2);
+    }
+    .timeline-header { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-start; justify-content: space-between; margin-bottom: 6px; }
+    .timeline-role { font-size: 1rem; font-weight: 600; }
+    .timeline-company { font-size: 0.85rem; color: var(--crimson); margin-bottom: 4px; }
+    .timeline-date {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      background: var(--dark-3);
+      padding: 3px 10px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+    .timeline-tasks { margin-top: 10px; list-style: none; }
+    .timeline-tasks li {
+      font-size: 0.87rem;
+      color: var(--text-secondary);
+      padding: 4px 0;
+      padding-left: 16px;
+      position: relative;
+    }
+    .timeline-tasks li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--crimson);
+      font-weight: 600;
+    }
+
+    /* ── Projects ── */
+    #projects { background: var(--dark); }
+    .projects-tabs { display: flex; gap: 4px; margin-bottom: 36px; background: var(--dark-2); border-radius: 6px; padding: 4px; width: fit-content; }
+    .proj-tab {
+      padding: 8px 18px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      font-family: 'Inter', sans-serif;
+    }
+    .proj-tab.active { background: var(--crimson); color: white; }
+    .projects-panel { display: none; }
+    .projects-panel.active { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .project-card {
+      background: var(--dark-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+    .project-card:hover { border-color: var(--border-accent); transform: translateY(-3px); }
+    .project-card-img {
+      height: 180px;
+      background: var(--dark-3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+      color: var(--text-muted);
+    }
+    .project-card-body { padding: 22px; }
+    .project-card-title { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
+    .project-card-desc { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 14px; }
+    .project-card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .project-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 3px 8px;
+      border-radius: 3px;
+      background: var(--dark-3);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--crimson);
+      margin-top: 14px;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Education ── */
+    #education { background: var(--dark-2); }
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .edu-card {
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px;
+    }
+    .edu-date { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; color: var(--crimson); text-transform: uppercase; margin-bottom: 8px; }
+    .edu-degree { font-size: 0.9rem; font-weight: 600; line-height: 1.4; margin-bottom: 4px; }
+    .edu-school { font-size: 0.8rem; color: var(--text-secondary); }
+
+    /* ── About ── */
+    #about { background: var(--dark); }
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .about-left { position: sticky; top: 100px; }
+    .about-avatar-big {
+      width: 200px; height: 200px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--dark-3) 0%, var(--dark-2) 100%);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 700;
+      color: var(--crimson);
+      margin-bottom: 20px;
+    }
+    .social-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .social-link {
+      width: 38px; height: 38px;
+      border-radius: 6px;
+      background: var(--dark-2);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .social-link:hover { border-color: var(--crimson); color: var(--crimson); }
+    .about-right h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 16px; }
+    .about-right p { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.85; margin-bottom: 16px; }
+    .lang-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+    .lang-tag {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 16px;
+      background: var(--dark-2);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      font-size: 0.82rem;
+    }
+    .lang-tag .level { font-size: 0.72rem; color: var(--crimson); font-weight: 600; }
+
+    /* ── Contact ── */
+    #contact { background: var(--dark-2); }
+    .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .contact-info-list { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .contact-icon {
+      width: 40px; height: 40px;
+      border-radius: 6px;
+      background: rgba(197,32,58,0.1);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--crimson);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .contact-info-item h4 { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px; }
+    .contact-info-item p { font-size: 0.88rem; color: var(--text-primary); }
+    .contact-form { display: flex; flex-direction: column; gap: 14px; }
+    .contact-form input,
+    .contact-form textarea {
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: var(--crimson); }
+    .contact-form textarea { min-height: 120px; resize: vertical; }
+    .contact-form ::placeholder { color: var(--text-muted); }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
+    .footer-brand span { color: var(--crimson); }
+    footer p { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .hero-inner, .skills-layout, .contact-layout, .about-layout { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .about-left { position: static; display: flex; align-items: center; gap: 20px; }
+      .about-avatar-big { width: 80px; height: 80px; font-size: 2rem; margin-bottom: 0; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+    @media (max-width: 600px) {
+      nav, section { padding-left: 20px; padding-right: 20px; }
+      footer { padding: 24px 20px; }
+      .lang-toggle { right: 16px; }
+    }
+
+    /* ── i18n hidden ── */
+    [data-lang="fr"] { display: none; }
+    body.fr [data-lang="en"] { display: none; }
+    body.fr [data-lang="fr"] { display: revert; }
+
+    /* ── Fade-in animations ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- Language Toggle -->
+<div class="lang-toggle">
+  <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+  <button class="lang-btn" onclick="setLang('fr')" id="btn-fr">FR</button>
+</div>
+
+<!-- Nav -->
+<nav id="navbar">
+  <div class="nav-brand"><span>K</span>arima <span>B</span>elkhatir</div>
+  <ul class="nav-links">
+    <li><a href="#services" data-lang="en">Services</a><a href="#services" data-lang="fr">Services</a></li>
+    <li><a href="#skills" data-lang="en">Skills</a><a href="#skills" data-lang="fr">Compétences</a></li>
+    <li><a href="#experience" data-lang="en">Experience</a><a href="#experience" data-lang="fr">Expérience</a></li>
+    <li><a href="#impact" data-lang="en">Impact</a><a href="#impact" data-lang="fr">Impact</a></li>
+    <li><a href="#projects" data-lang="en">Projects</a><a href="#projects" data-lang="fr">Projets</a></li>
+    <li><a href="#about" data-lang="en">About</a><a href="#about" data-lang="fr">À propos</a></li>
+    <li><a href="#contact" data-lang="en">Contact</a><a href="#contact" data-lang="fr">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#services" onclick="toggleMenu()"><span data-lang="en">Services</span><span data-lang="fr">Services</span></a></li>
+    <li><a href="#skills" onclick="toggleMenu()"><span data-lang="en">Skills</span><span data-lang="fr">Compétences</span></a></li>
+    <li><a href="#experience" onclick="toggleMenu()"><span data-lang="en">Experience</span><span data-lang="fr">Expérience</span></a></li>
+    <li><a href="#impact" onclick="toggleMenu()"><span data-lang="en">Impact</span><span data-lang="fr">Impact</span></a></li>
+    <li><a href="#projects" onclick="toggleMenu()"><span data-lang="en">Projects</span><span data-lang="fr">Projets</span></a></li>
+    <li><a href="#about" onclick="toggleMenu()"><span data-lang="en">About</span><span data-lang="fr">À propos</span></a></li>
+    <li><a href="#contact" onclick="toggleMenu()"><span data-lang="en">Contact</span><span data-lang="fr">Contact</span></a></li>
+  </ul>
+</div>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="fade-up">
+      <p class="hero-eyebrow">
+        <span data-lang="en">Software Engineer</span>
+        <span data-lang="fr">Ingénieure logicielle</span>
+      </p>
+      <h1 class="hero-name">
+        <span class="first">Karima</span>
+        <span class="last">Belkhatir</span>
+      </h1>
+      <p class="hero-title">
+        <span data-lang="en">.NET Developer &amp; Microsoft Dynamics 365 CRM Consultant</span>
+        <span data-lang="fr">Développeuse .NET &amp; Consultante CRM Microsoft Dynamics 365</span>
+      </p>
+      <p class="hero-desc">
+        <span data-lang="en">4+ years building critical banking &amp; enterprise applications. Specialized in the Microsoft ecosystem — .NET, Azure, Dynamics 365 — with a passion for clean architecture and robust solutions.</span>
+        <span data-lang="fr">Plus de 4 ans à concevoir des applications critiques pour le secteur bancaire et les entreprises. Spécialisée dans l'écosystème Microsoft — .NET, Azure, Dynamics 365 — avec une passion pour l'architecture propre et les solutions robustes.</span>
+      </p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn-primary">
+          <i class="fa-solid fa-code"></i>
+          <span data-lang="en">View Projects</span>
+          <span data-lang="fr">Voir les projets</span>
+        </a>
+        <a href="#contact" class="btn-secondary">
+          <i class="fa-regular fa-envelope"></i>
+          <span data-lang="en">Get in touch</span>
+          <span data-lang="fr">Me contacter</span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual fade-up" style="transition-delay:0.15s">
+      <div class="hero-card">
+        <div class="hero-card-top">
+          <div class="avatar">KB</div>
+          <div>
+            <div class="hero-card-name">Karima Belkhatir</div>
+            <div class="hero-card-role">.NET · CRM · Azure</div>
+          </div>
+        </div>
+        <div class="stat-grid">
+          <div class="stat-item">
+            <div class="stat-num">4+</div>
+            <div class="stat-label" data-lang="en">Years exp.</div>
+            <div class="stat-label" data-lang="fr">Ans d'exp.</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">50+</div>
+            <div class="stat-label" data-lang="en">Projects</div>
+            <div class="stat-label" data-lang="fr">Projets</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">C2</div>
+            <div class="stat-label" data-lang="en">French (DALF)</div>
+            <div class="stat-label" data-lang="fr">Français(DALF)</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">D365</div>
+            <div class="stat-label" data-lang="en">Certified exp.</div>
+            <div class="stat-label" data-lang="fr">Exp. certifiée</div>
+          </div>
+        </div>
+        <div class="badge-row">
+          <span class="badge">.NET Core</span>
+          <span class="badge">Angular</span>
+          <span class="badge">Azure</span>
+          <span class="badge">C#</span>
+          <span class="badge">D365</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span data-lang="en">scroll</span>
+    <span data-lang="fr">défiler</span>
+    <i class="fa-solid fa-chevron-down" style="font-size:0.7rem"></i>
+  </div>
+</section>
+
+<!-- ══ SERVICES ══ -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <p class="section-label">
+        <span data-lang="en">What I do</span>
+        <span data-lang="fr">Ce que je fais</span>
+      </p>
+      <h2 class="section-title">
+        <span data-lang="en">Services</span>
+        <span data-lang="fr">Services</span>
+      </h2>
+      <p class="section-sub">
+        <span data-lang="en">From backend engineering to CRM consulting, I deliver end-to-end solutions across the Microsoft stack.</span>
+        <span data-lang="fr">Du développement backend au conseil CRM, je livre des solutions complètes sur la stack Microsoft.</span>
+      </p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="service-icon"><i class="fa-solid fa-server"></i></div>
+        <h3 data-lang="en">.NET Backend Development</h3>
+        <h3 data-lang="fr">Développement Backend .NET</h3>
+        <p data-lang="en">Design and development of robust back-end services and APIs using C#, .NET Core, and ASP.NET MVC. Emphasis on clean code, security, and performance in regulated environments.</p>
+        <p data-lang="fr">Conception et développement de services back-end et d'API robustes avec C#, .NET Core et ASP.NET MVC. Accent sur la qualité du code, la sécurité et la performance en environnement réglementé.</p>
+      </div>
+      <div class="service-card fade-up" style="transition-delay:0.08s">
+        <div class="service-icon"><i class="fa-brands fa-microsoft"></i></div>
+        <h3 data-lang="en">Microsoft Dynamics 365 CRM</h3>
+        <h3 data-lang="fr">CRM Microsoft Dynamics 365</h3>
+        <p data-lang="en">Functional analysis, configuration, and customization of D365 to streamline sales operations and customer workflows. Expertise in integration, user adoption, and technical consulting.</p>
+        <p data-lang="fr">Analyse fonctionnelle, configuration et personnalisation de D365 pour optimiser les ventes et les workflows clients. Expertise en intégration, adoption utilisateur et conseil technique.</p>
+      </div>
+      <div class="service-card fade-up" style="transition-delay:0.16s">
+        <div class="service-icon"><i class="fa-solid fa-cloud"></i></div>
+        <h3 data-lang="en">Azure API &amp; Cloud Integration</h3>
+        <h3 data-lang="fr">Intégration Azure &amp; APIs Cloud</h3>
+        <p data-lang="en">Design and deployment of RESTful APIs on Azure API Management. Cloud integration, security hardening, and monitoring for enterprise-grade reliability.</p>
+        <p data-lang="fr">Conception et déploiement d'API RESTful sur Azure API Management. Intégration cloud, sécurisation et monitoring pour une fiabilité de niveau entreprise.</p>
+      </div>
+      <div class="service-card fade-up" style="transition-delay:0.24s">
+        <div class="service-icon"><i class="fa-solid fa-layer-group"></i></div>
+        <h3 data-lang="en">Full-Stack Web Applications</h3>
+        <h3 data-lang="fr">Applications Web Full-Stack</h3>
+        <p data-lang="en">End-to-end development of modern web apps with Angular frontends and .NET backends. Responsive, accessible, and built for scale.</p>
+        <p data-lang="fr">Développement complet d'applications web modernes avec Angular en front-end et .NET en back-end. Responsives, accessibles et conçues pour évoluer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SKILLS ══ -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <p class="section-label">
+        <span data-lang="en">Tech Stack</span>
+        <span data-lang="fr">Stack technologique</span>
+      </p>
+      <h2 class="section-title">
+        <span data-lang="en">Skills &amp; Technologies</span>
+        <span data-lang="fr">Compétences &amp; Technologies</span>
+      </h2>
+    </div>
+    <div class="skills-layout">
+      <div class="fade-up">
+        <div class="tech-group">
+          <div class="tech-group-label" data-lang="en">Languages</div>
+          <div class="tech-group-label" data-lang="fr">Langages</div>
+          <div class="tech-pills">
+            <div class="tech-pill"><i class="fa-solid fa-code" style="font-size:0.7rem;color:var(--crimson)"></i> C#</div>
+            <div class="tech-pill"><i class="fa-solid fa-code" style="font-size:0.7rem;color:var(--crimson)"></i> Java</div>
+            <div class="tech-pill"><i class="fa-solid fa-code" style="font-size:0.7rem;color:var(--crimson)"></i> Python</div>
+            <div class="tech-pill"><i class="fa-solid fa-code" style="font-size:0.7rem;color:var(--crimson)"></i> JavaScript</div>
+            <div class="tech-pill"><i class="fa-solid fa-code" style="font-size:0.7rem;color:var(--crimson)"></i> TypeScript</div>
+            <div class="tech-pill"><i class="fa-solid fa-code" style="font-size:0.7rem;color:var(--crimson)"></i> SQL / PL-SQL</div>
+          </div>
+        </div>
+        <div class="tech-group">
+          <div class="tech-group-label" data-lang="en">Frameworks</div>
+          <div class="tech-group-label" data-lang="fr">Frameworks</div>
+          <div class="tech-pills">
+            <div class="tech-pill">.NET / .NET Core</div>
+            <div class="tech-pill">ASP.NET MVC</div>
+            <div class="tech-pill">Angular</div>
+            <div class="tech-pill">Spring Boot</div>
+            <div class="tech-pill">Hibernate</div>
+            <div class="tech-pill">Selenium</div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up" style="transition-delay:0.1s">
+        <div class="tech-group">
+          <div class="tech-group-label" data-lang="en">Databases</div>
+          <div class="tech-group-label" data-lang="fr">Bases de données</div>
+          <div class="tech-pills">
+            <div class="tech-pill">Microsoft SQL Server</div>
+            <div class="tech-pill">Oracle</div>
+            <div class="tech-pill">MySQL</div>
+            <div class="tech-pill">IBM Informix</div>
+          </div>
+        </div>
+        <div class="tech-group">
+          <div class="tech-group-label">Cloud &amp; CRM</div>
+          <div class="tech-pills">
+            <div class="tech-pill"><i class="fa-brands fa-microsoft" style="font-size:0.7rem;color:var(--crimson)"></i> Microsoft Azure</div>
+            <div class="tech-pill"><i class="fa-brands fa-microsoft" style="font-size:0.7rem;color:var(--crimson)"></i> Dynamics 365</div>
+            <div class="tech-pill">Azure API Management</div>
+          </div>
+        </div>
+        <div class="tech-group">
+          <div class="tech-group-label" data-lang="en">Methods &amp; Tools</div>
+          <div class="tech-group-label" data-lang="fr">Méthodes &amp; Outils</div>
+          <div class="tech-pills">
+            <div class="tech-pill">UML / Merise</div>
+            <div class="tech-pill">REST APIs</div>
+            <div class="tech-pill">Unit Testing</div>
+            <div class="tech-pill">Agile / Scrum</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EXPERIENCE ══ -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <p class="section-label">
+        <span data-lang="en">Career</span>
+        <span data-lang="fr">Parcours</span>
+      </p>
+      <h2 class="section-title">
+        <span data-lang="en">Professional Experience</span>
+        <span data-lang="fr">Expérience professionnelle</span>
+      </h2>
+    </div>
+    <div class="timeline fade-up">
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-role" data-lang="en">.NET Development Engineer</div>
+            <div class="timeline-role" data-lang="fr">Ingénieur études et développement .NET</div>
+            <div class="timeline-company">Al Barid Bank</div>
+          </div>
+          <div class="timeline-date" data-lang="en">Aug 2023 — Present · Rabat</div>
+          <div class="timeline-date" data-lang="fr">Août 2023 — Aujourd'hui · Rabat</div>
+        </div>
+        <div class="exp-stats-row">
+          <div class="exp-stat-chip"><b>27</b><span data-lang="en">projects led</span><span data-lang="fr">projets pilotés</span></div>
+          <div class="exp-stat-chip"><b>13</b><span data-lang="en">delivered to production</span><span data-lang="fr">livrés en production</span></div>
+          <div class="exp-stat-chip"><b>14</b><span data-lang="en">business units served</span><span data-lang="fr">directions métier servies</span></div>
+        </div>
+        <ul class="timeline-tasks">
+          <li data-lang="en">Developed and deployed new features for internal and customer-facing banking applications (.NET, Angular)</li>
+          <li data-lang="fr">Développement et mise en production de nouvelles fonctionnalités pour les applications bancaires (.NET, Angular)</li>
+          <li data-lang="en">Maintained and evolved legacy systems on .NET Framework 3.5 to ensure service availability</li>
+          <li data-lang="fr">Maintenance corrective et évolutive des applications .NET Framework 3.5</li>
+          <li data-lang="en">Wrote technical and functional specifications in collaboration with business teams</li>
+          <li data-lang="fr">Rédaction des spécifications techniques et fonctionnelles avec les équipes métier</li>
+          <li data-lang="en">Conducted unit testing and participated in integration and validation phases</li>
+          <li data-lang="fr">Réalisation de tests unitaires et participation aux phases de tests d'intégration</li>
+          <li data-lang="en">Implemented Core Banking components for digital, mobile and partner channels</li>
+          <li data-lang="fr">Implémentation de composants Core Banking pour les canaux digitaux, mobile et partenaires</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-role" data-lang="en">Microsoft Dynamics 365 CRM Consultant &amp; .NET Developer</div>
+            <div class="timeline-role" data-lang="fr">Consultante CRM Microsoft Dynamics 365 &amp; Développeuse .NET</div>
+            <div class="timeline-company">Logigroup</div>
+          </div>
+          <div class="timeline-date" data-lang="en">Feb 2022 — Aug 2023 · Casablanca</div>
+          <div class="timeline-date" data-lang="fr">Fév. 2022 — Août 2023 · Casablanca</div>
+        </div>
+        <ul class="timeline-tasks">
+          <li data-lang="en">Functional analysis and technical design of CRM projects</li>
+          <li data-lang="fr">Analyse fonctionnelle et conception technique de projets CRM</li>
+          <li data-lang="en">Configured and customized Microsoft Dynamics 365 to boost sales team productivity</li>
+          <li data-lang="fr">Configuration et personnalisation de Microsoft Dynamics 365 pour améliorer la productivité commerciale</li>
+          <li data-lang="en">Developed new features and maintained deployed systems</li>
+          <li data-lang="fr">Développement de nouvelles fonctionnalités et maintenance des systèmes déployés</li>
+          <li data-lang="en">Designed and deployed RESTful APIs on Azure API Management</li>
+          <li data-lang="fr">Développement et déploiement d'API RESTful sur Azure API Management</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-role" data-lang="en">Full-Stack Developer (Internship)</div>
+            <div class="timeline-role" data-lang="fr">Développeuse Full-Stack (Stage)</div>
+            <div class="timeline-company">Trendile</div>
+          </div>
+          <div class="timeline-date" data-lang="en">Jun 2021 — Aug 2021 · Rabat</div>
+          <div class="timeline-date" data-lang="fr">Juin 2021 — Août 2021 · Rabat</div>
+        </div>
+        <ul class="timeline-tasks">
+          <li data-lang="en">Requirements analysis and full-stack web app development (Java/Spring, Angular)</li>
+          <li data-lang="fr">Analyse des besoins et développement full-stack (Java/Spring, Angular)</li>
+          <li data-lang="en">Unit testing and technical documentation</li>
+          <li data-lang="fr">Réalisation des tests unitaires et rédaction du support technique</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ IMPACT ══ -->
+<section id="impact">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <p class="section-label">
+        <span data-lang="en">By the numbers</span>
+        <span data-lang="fr">En chiffres</span>
+      </p>
+      <h2 class="section-title">
+        <span data-lang="en">Project Delivery Impact</span>
+        <span data-lang="fr">Impact sur la livraison de projets</span>
+      </h2>
+      <p class="section-sub">
+        <span data-lang="en">As lead developer on Al Barid Bank's IT project portfolio, here's a snapshot of what I've delivered.</span>
+        <span data-lang="fr">En tant qu'ingénieure responsable sur le portefeuille de projets IT d'Al Barid Bank, voici un aperçu de ce que j'ai livré.</span>
+      </p>
+    </div>
+    <div class="impact-grid fade-up">
+      <div class="impact-card" style="--impact-color:#3B82F6">
+        <i class="fa-solid fa-layer-group impact-icon"></i>
+        <div class="impact-num">27</div>
+        <div class="impact-label" data-lang="en">Projects led as Lead Developer</div>
+        <div class="impact-label" data-lang="fr">Projets pilotés en tant que Lead Developer</div>
+      </div>
+      <div class="impact-card" style="--impact-color:#22C55E">
+        <i class="fa-solid fa-circle-check impact-icon"></i>
+        <div class="impact-num">13</div>
+        <div class="impact-label" data-lang="en">Successfully delivered to production</div>
+        <div class="impact-label" data-lang="fr">Livrés avec succès en production</div>
+      </div>
+      <div class="impact-card" style="--impact-color:#F59E0B">
+        <i class="fa-solid fa-diagram-project impact-icon"></i>
+        <div class="impact-num">9</div>
+        <div class="impact-label" data-lang="en">Strategic portfolios &amp; programs covered</div>
+        <div class="impact-label" data-lang="fr">Portefeuilles &amp; programmes stratégiques couverts</div>
+      </div>
+      <div class="impact-card" style="--impact-color:#06B6D4">
+        <i class="fa-solid fa-sitemap impact-icon"></i>
+        <div class="impact-num">14</div>
+        <div class="impact-label" data-lang="en">Business units &amp; departments served</div>
+        <div class="impact-label" data-lang="fr">Directions &amp; entités métier servies</div>
+      </div>
+    </div>
+    <p class="impact-note fade-up" data-lang="en">Portfolio spans core banking, digital channels, fraud prevention, credit, marketing, and compliance — collaborating across business units including Digital Payments, Credits, Marketing, Internal Audit, Risk Management, and IT Security.</p>
+    <p class="impact-note fade-up" data-lang="fr">Le portefeuille couvre le core banking, les canaux digitaux, la prévention de la fraude, les crédits, le marketing et la conformité — en collaboration avec des directions telles que Digital &amp; Paiements, Crédits, Marketing, Audit Interne, Risk Management et Sécurité SI.</p>
+  </div>
+</section>
+
+<!-- ══ PROJECTS ══ -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <p class="section-label">
+        <span data-lang="en">Portfolio</span>
+        <span data-lang="fr">Réalisations</span>
+      </p>
+      <h2 class="section-title">
+        <span data-lang="en">Projects</span>
+        <span data-lang="fr">Projets</span>
+      </h2>
+    </div>
+    <div class="fade-up">
+      <div class="projects-tabs">
+        <button class="proj-tab active" onclick="switchTab('github')">
+          <span data-lang="en">GitHub Repos</span>
+          <span data-lang="fr">Dépôts GitHub</span>
+        </button>
+        <button class="proj-tab" onclick="switchTab('academic')">
+          <span data-lang="en">Academic</span>
+          <span data-lang="fr">Académiques</span>
+        </button>
+      </div>
+
+      <div id="tab-github" class="projects-panel active">
+        <div class="project-card">
+          <div class="project-card-img"><i class="fa-solid fa-wallet"></i></div>
+          <div class="project-card-body">
+            <div class="project-card-title">PocketFlow</div>
+            <p class="project-card-desc" data-lang="en">Personal finance management web application. Track income, expenses, and budgets with a clean, intuitive interface.</p>
+            <p class="project-card-desc" data-lang="fr">Application web de gestion de finances personnelles. Suivi des revenus, dépenses et budgets avec une interface intuitive.</p>
+            <div class="project-card-tags"><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">JavaScript</span></div>
+            <a href="https://github.com/karobel/PocketFlow" target="_blank" class="project-link">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7rem"></i></a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-card-img"><i class="fa-solid fa-book-open-reader"></i></div>
+          <div class="project-card-body">
+            <div class="project-card-title">Library Management Console</div>
+            <p class="project-card-desc" data-lang="en">Console-based CRUD application in Java for managing book collections. Clean layered architecture: Model → Repository → Service → UI.</p>
+            <p class="project-card-desc" data-lang="fr">Application CRUD en console Java pour gérer une collection de livres. Architecture en couches propre : Model → Repository → Service → UI.</p>
+            <div class="project-card-tags"><span class="project-tag">Java</span><span class="project-tag">OOP</span><span class="project-tag">CRUD</span></div>
+            <a href="https://github.com/karobel/library-management-console" target="_blank" class="project-link">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7rem"></i></a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-card-img"><i class="fa-solid fa-book-open"></i></div>
+          <div class="project-card-body">
+            <div class="project-card-title">Library (Full CRUD Web App)</div>
+            <p class="project-card-desc" data-lang="en">Full CRUD web app for managing book collections built with vanilla HTML, CSS, and JavaScript. No frameworks, no server needed.</p>
+            <p class="project-card-desc" data-lang="fr">Application web CRUD complète de gestion de livres en HTML, CSS et JavaScript vanilla. Sans framework ni serveur.</p>
+            <div class="project-card-tags"><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">JS</span></div>
+            <a href="https://github.com/karobel/library" target="_blank" class="project-link">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7rem"></i></a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-card-img"><i class="fa-solid fa-brain"></i></div>
+          <div class="project-card-body">
+            <div class="project-card-title">InnerWorld</div>
+            <p class="project-card-desc" data-lang="en">A thoughtful questionnaire that reveals your personality blueprint, the emotional imprints shaping your life, who your ideal partner is, and who you are becoming.</p>
+            <p class="project-card-desc" data-lang="fr">Un questionnaire de personnalité révélant votre empreinte émotionnelle, votre partenaire idéal et votre devenir.</p>
+            <div class="project-card-tags"><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">JS</span></div>
+            <a href="https://github.com/karobel/InnerWorld" target="_blank" class="project-link">View on GitHub <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7rem"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-academic" class="projects-panel">
+        <div class="project-card">
+          <div class="project-card-img"><i class="fa-solid fa-shop"></i></div>
+          <div class="project-card-body">
+            <div class="project-card-title">Anailis — E-commerce Platform</div>
+            <p class="project-card-desc" data-lang="en">Full e-commerce platform for artisanal products with product management, themes, and sales tracking.</p>
+            <p class="project-card-desc" data-lang="fr">Plateforme e-commerce de vente de produits artisanaux avec gestion des produits, thèmes et suivi des ventes.</p>
+            <div class="project-card-tags"><span class="project-tag">Angular</span><span class="project-tag">Spring Boot</span><span class="project-tag">MySQL</span><span class="project-tag">Java EE</span></div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-card-img"><i class="fa-solid fa-briefcase"></i></div>
+          <div class="project-card-body">
+            <div class="project-card-title">Freelancer Platform</div>
+            <p class="project-card-desc" data-lang="en">Freelance services marketplace connecting clients and providers with secure authentication and service listings.</p>
+            <p class="project-card-desc" data-lang="fr">Plateforme de services freelance connectant clients et prestataires avec authentification sécurisée.</p>
+            <div class="project-card-tags"><span class="project-tag">Spring MVC</span><span class="project-tag">Spring Security</span><span class="project-tag">MySQL</span><span class="project-tag">Bootstrap</span></div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-card-img"><i class="fa-solid fa-hotel"></i></div>
+          <div class="project-card-body">
+            <div class="project-card-title">Hotel-Du-Maroc</div>
+            <p class="project-card-desc" data-lang="en">Hotel reservation web app with secure online booking, room management, and guest administration.</p>
+            <p class="project-card-desc" data-lang="fr">Application web de réservation hôtelière avec réservations en ligne sécurisées et gestion des chambres.</p>
+            <div class="project-card-tags"><span class="project-tag">PHP</span><span class="project-tag">HTML5</span><span class="project-tag">Bootstrap</span><span class="project-tag">MySQL</span></div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-card-img"><i class="fa-solid fa-calendar-days"></i></div>
+          <div class="project-card-body">
+            <div class="project-card-title">Conference Manager</div>
+            <p class="project-card-desc" data-lang="en">Desktop application for managing scientific conferences — events, ticketing, speakers, and attendees.</p>
+            <p class="project-card-desc" data-lang="fr">Application desktop de gestion de conférences scientifiques — événements, billetterie, intervenants.</p>
+            <div class="project-card-tags"><span class="project-tag">Java</span><span class="project-tag">JavaFX</span><span class="project-tag">Swing</span><span class="project-tag">MySQL</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EDUCATION ══ -->
+<section id="education">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <p class="section-label">
+        <span data-lang="en">Academic Background</span>
+        <span data-lang="fr">Formation</span>
+      </p>
+      <h2 class="section-title">
+        <span data-lang="en">Education</span>
+        <span data-lang="fr">Formation</span>
+      </h2>
+    </div>
+    <div class="edu-grid fade-up">
+      <div class="edu-card">
+        <div class="edu-date">2019 – 2022</div>
+        <div class="edu-degree" data-lang="en">State Engineering Diploma — Mathematical &amp; Computer Engineering<br><small style="color:var(--text-muted);font-size:0.75rem;font-weight:400">(WES Equivalency: Bachelor's + Master's)</small></div>
+        <div class="edu-degree" data-lang="fr">Diplôme d'ingénieur d'état — Génie Mathématique et Informatique<br><small style="color:var(--text-muted);font-size:0.75rem;font-weight:400">(Équivalence WES : Licence + Maîtrise)</small></div>
+        <div class="edu-school">Université Hassan II, FST Mohammedia</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-date">2017 – 2018</div>
+        <div class="edu-degree" data-lang="en">Bachelor's Degree — Applied Mathematics</div>
+        <div class="edu-degree" data-lang="fr">Licence — Mathématiques appliquées</div>
+        <div class="edu-school">Université Ibn Zohr, Agadir</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-date">2014 – 2017</div>
+        <div class="edu-degree" data-lang="en">DEUG — Applied Mathematics</div>
+        <div class="edu-degree" data-lang="fr">DEUG — Mathématiques appliquées</div>
+        <div class="edu-school">Université Ibn Zohr, Agadir</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-date">2014</div>
+        <div class="edu-degree" data-lang="en">Baccalauréat — Mathematical Sciences</div>
+        <div class="edu-degree" data-lang="fr">Baccalauréat — Sciences mathématiques</div>
+        <div class="edu-school">Lycée Lalla Meryem, Agadir</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <p class="section-label">
+        <span data-lang="en">Who I am</span>
+        <span data-lang="fr">Qui suis-je</span>
+      </p>
+      <h2 class="section-title">
+        <span data-lang="en">About Me</span>
+        <span data-lang="fr">À propos</span>
+      </h2>
+    </div>
+    <div class="about-layout fade-up">
+      <div class="about-left">
+        <div class="about-avatar-big">KB</div>
+        <div class="social-links">
+          <a href="https://ma.linkedin.com/in/karima-belkhatir" target="_blank" class="social-link" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://github.com/karobel" target="_blank" class="social-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="mailto:karima.belkhatir.pro@gmail.com" class="social-link" title="Email"><i class="fa-regular fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="about-right">
+        <h2 data-lang="en">.NET Developer &amp; CRM Consultant</h2>
+        <h2 data-lang="fr">Développeuse .NET &amp; Consultante CRM</h2>
+        <p data-lang="en">I'm a passionate Software Engineer with 4+ years of experience building critical applications for the banking and financial sector. My expertise lies in the Microsoft ecosystem — .NET, Azure, and Dynamics 365 — where I combine strong technical skills with a rigorous approach to deliver solutions that are both robust and maintainable.</p>
+        <p data-lang="fr">Ingénieure logicielle passionnée avec plus de 4 ans d'expérience dans le développement d'applications critiques pour le secteur bancaire. Mon expertise porte sur l'écosystème Microsoft — .NET, Azure, Dynamics 365 — où je combine compétences techniques et rigueur pour livrer des solutions robustes et maintenables.</p>
+        <p data-lang="en">Throughout my career, I've worked across the full development lifecycle: from requirements gathering and technical specification writing, through implementation and testing, to post-deployment support. I bring the same level of care to a CRM customization project as I do to a core banking component.</p>
+        <p data-lang="fr">Tout au long de ma carrière, j'ai travaillé sur l'ensemble du cycle de développement : recueil des besoins, rédaction des spécifications, implémentation, tests et support post-déploiement. J'apporte le même soin à un projet de personnalisation CRM qu'à un composant Core Banking.</p>
+        <p data-lang="en">Beyond code, I enjoy reading, volunteering with Enactus Morocco, and exploring new cultures. I'm always looking for opportunities to grow — technically and personally.</p>
+        <p data-lang="fr">Au-delà du code, j'aime lire, faire du bénévolat avec Enactus Maroc et découvrir de nouvelles cultures. Je suis toujours à la recherche d'opportunités de croissance — technique et personnelle.</p>
+        <div class="lang-tags">
+          <div class="lang-tag"><span>العربية</span><span class="level" data-lang="en">Native</span><span class="level" data-lang="fr">Natif</span></div>
+          <div class="lang-tag"><span>Français</span><span class="level">C1/C2 · TEF</span></div>
+          <div class="lang-tag"><span>English</span><span class="level" data-lang="en">Intermediate</span><span class="level" data-lang="fr">Intermédiaire</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <p class="section-label">
+        <span data-lang="en">Let's talk</span>
+        <span data-lang="fr">Parlons-nous</span>
+      </p>
+      <h2 class="section-title">
+        <span data-lang="en">Get In Touch</span>
+        <span data-lang="fr">Me contacter</span>
+      </h2>
+      <p class="section-sub">
+        <span data-lang="en">Open to new opportunities, collaborations, or just a conversation about tech.</span>
+        <span data-lang="fr">Ouverte à de nouvelles opportunités, collaborations, ou simplement une discussion technique.</span>
+      </p>
+    </div>
+    <div class="contact-layout fade-up">
+      <div>
+        <div class="contact-info-list">
+          <div class="contact-info-item">
+            <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <h4 data-lang="en">Phone</h4>
+              <h4 data-lang="fr">Téléphone</h4>
+              <p>+212 6 11 83 02 84</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon"><i class="fa-regular fa-envelope"></i></div>
+            <div>
+              <h4>Email</h4>
+              <p>karima.belkhatir.pro@gmail.com</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <h4 data-lang="en">Location</h4>
+              <h4 data-lang="fr">Localisation</h4>
+              <p data-lang="en">Rabat, Morocco</p>
+              <p data-lang="fr">Rabat, Maroc</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+            <div>
+              <h4>LinkedIn</h4>
+              <p><a href="https://ma.linkedin.com/in/karima-belkhatir" target="_blank" style="color:var(--crimson)">/karima-belkhatir</a></p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon"><i class="fa-brands fa-github"></i></div>
+            <div>
+              <h4>GitHub</h4>
+              <p><a href="https://github.com/karobel" target="_blank" style="color:var(--crimson)">github.com/karobel</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:0.88rem;color:var(--text-secondary);margin-bottom:20px" data-lang="en">Send me a message and I'll get back to you as soon as possible.</p>
+        <p style="font-size:0.88rem;color:var(--text-secondary);margin-bottom:20px" data-lang="fr">Envoyez-moi un message et je vous répondrai dans les plus brefs délais.</p>
+        <div class="contact-form" id="contactForm">
+          <input type="text" id="field-name" placeholder="Name / Nom" required />
+          <input type="email" id="field-email" placeholder="Email" required />
+          <input type="text" id="field-subject" placeholder="Subject / Objet" />
+          <textarea id="field-message" placeholder="Message..." required></textarea>
+          <div id="form-feedback" style="display:none;font-size:0.85rem;padding:10px 14px;border-radius:6px;"></div>
+          <button class="btn-primary" id="submitBtn" style="align-self:flex-start;cursor:pointer;border:none" onclick="handleFormSubmit(this)">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span data-lang="en">Send Message</span>
+            <span data-lang="fr">Envoyer</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-brand"><span>K</span>arima <span>B</span>elkhatir</div>
+  <p data-lang="en">© 2026 · .NET Developer &amp; CRM Consultant</p>
+  <p data-lang="fr">© 2026 · Développeuse .NET &amp; Consultante CRM</p>
+  <div style="display:flex;gap:10px">
+    <a href="https://ma.linkedin.com/in/karima-belkhatir" target="_blank" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+    <a href="https://github.com/karobel" target="_blank" class="social-link"><i class="fa-brands fa-github"></i></a>
+    <a href="mailto:karima.belkhatir.pro@gmail.com" class="social-link"><i class="fa-regular fa-envelope"></i></a>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.body.classList.toggle('fr', lang === 'fr');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+    localStorage.setItem('kb-lang', lang);
+  }
+
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  function switchTab(tab) {
+    document.querySelectorAll('.proj-tab').forEach((t, i) => {
+      t.classList.toggle('active', (i === 0 && tab === 'github') || (i === 1 && tab === 'academic'));
+    });
+    document.querySelectorAll('.projects-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+  }
+
+  async function handleFormSubmit(btn) {
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mlgkqqvw';
+    const isFr = document.body.classList.contains('fr');
+    const name = document.getElementById('field-name').value.trim();
+    const email = document.getElementById('field-email').value.trim();
+    const subject = document.getElementById('field-subject').value.trim();
+    const message = document.getElementById('field-message').value.trim();
+    const feedback = document.getElementById('form-feedback');
+
+    if (!name || !email || !message) {
+      feedback.style.display = 'block';
+      feedback.style.background = 'rgba(197,32,58,0.1)';
+      feedback.style.border = '1px solid rgba(197,32,58,0.3)';
+      feedback.style.color = '#E87070';
+      feedback.textContent = isFr
+        ? 'Veuillez remplir les champs nom, email et message.'
+        : 'Please fill in name, email, and message.';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> ' + (isFr ? 'Envoi...' : 'Sending...');
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, subject, message })
+      });
+
+      if (res.ok) {
+        feedback.style.display = 'block';
+        feedback.style.background = 'rgba(26,122,74,0.12)';
+        feedback.style.border = '1px solid rgba(26,122,74,0.35)';
+        feedback.style.color = '#4ade80';
+        feedback.textContent = isFr
+          ? '✓ Message envoyé ! Je vous répondrai dès que possible.'
+          : '✓ Message sent! I\'ll get back to you as soon as possible.';
+        document.getElementById('field-name').value = '';
+        document.getElementById('field-email').value = '';
+        document.getElementById('field-subject').value = '';
+        document.getElementById('field-message').value = '';
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> ' + (isFr ? 'Envoyé !' : 'Sent!');
+        btn.style.background = '#1a7a4a';
+        setTimeout(() => {
+          btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> <span data-lang="en">Send Message</span><span data-lang="fr">Envoyer</span>';
+          btn.style.background = '';
+          btn.disabled = false;
+          setLang(isFr ? 'fr' : 'en');
+        }, 4000);
+      } else {
+        throw new Error('Server error');
+      }
+    } catch (e) {
+      feedback.style.display = 'block';
+      feedback.style.background = 'rgba(197,32,58,0.1)';
+      feedback.style.border = '1px solid rgba(197,32,58,0.3)';
+      feedback.style.color = '#E87070';
+      feedback.textContent = isFr
+        ? 'Erreur lors de l\'envoi. Contactez-moi directement par email.'
+        : 'Error sending message. Please contact me directly by email.';
+      btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> <span data-lang="en">Send Message</span><span data-lang="fr">Envoyer</span>';
+      btn.style.background = '';
+      btn.disabled = false;
+      setLang(isFr ? 'fr' : 'en');
+    }
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.background =
+      window.scrollY > 20 ? 'rgba(15,15,15,0.97)' : 'rgba(15,15,15,0.92)';
+  });
+
+  const savedLang = localStorage.getItem('kb-lang');
+  if (savedLang) setLang(savedLang);
+</script>
+</body>
+</html>
